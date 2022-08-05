@@ -7,7 +7,7 @@ import br.com.impacta.room.data.repositories.ComidaRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class HomeViewModel(appDatabase: AppDatabase) {
+class HomeViewModel(appDatabase: AppDatabase): ViewModel() {
 
     private val _listaComida: MutableLiveData<List<Comida>> = MutableLiveData(listOf())
     val listaComida: LiveData<List<Comida>> = _listaComida
