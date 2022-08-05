@@ -42,7 +42,6 @@ class CreateEditFragment : Fragment() {
 
             binding.button.setOnClickListener {
                 var comida = Comida(
-                    id = 2,
                     nomeComida = binding.editTextTextPersonName.text.toString(),
                     origem = binding.editTextTextPersonName2.text.toString(),
                     calorias = binding.editTextTextPersonName3.text.toString().toInt(),
