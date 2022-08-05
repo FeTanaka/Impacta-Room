@@ -36,6 +36,22 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel.listaComida.observe(viewLifecycleOwner) { lista ->
+            binding.comidaRecyclerView.adapter = ComidaAdapter(lista) {id ->
+                val action = HomeFragmentDirections.actionHomeFragmentToCreateEditFragment(id)
+                findNavController().navigate(action)
+            }
+            binding.comidaRecyclerView.layoutManager = LinearLayoutManager(context)
+        }
+
+        viewModel.getComidas()
+
+        binding.floatingActionButton.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToCreateEditFragment(-1)
+            findNavController().navigate(action)
+        }
+
     }
 
 
