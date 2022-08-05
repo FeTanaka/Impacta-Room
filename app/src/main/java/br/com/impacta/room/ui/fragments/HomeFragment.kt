@@ -21,7 +21,7 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: HomeViewModel by viewModels {
+    private val viewModel: HomeViewModel by activityViewModels {
         HomeViewModelFactory((activity as MainActivity).db)
     }
 
@@ -38,7 +38,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.listaComida.observe(viewLifecycleOwner) { lista ->
-            binding.comidaRecyclerView.adapter = ComidaAdapter(lista) {id ->
+            binding.comidaRecyclerView.adapter = ComidaAdapter(lista) { id ->
                 val action = HomeFragmentDirections.actionHomeFragmentToCreateEditFragment(id)
                 findNavController().navigate(action)
             }
@@ -51,9 +51,5 @@ class HomeFragment : Fragment() {
             val action = HomeFragmentDirections.actionHomeFragmentToCreateEditFragment(-1)
             findNavController().navigate(action)
         }
-
     }
-
-
-
 }
